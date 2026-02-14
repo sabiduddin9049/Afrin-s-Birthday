@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Gorgeous</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Title */
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-top: 20px;
+}
+
+/* Animated Name */
+.name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #fff, #ffe6f0, #fff);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    0% {background-position: 0%;}
+    100% {background-position: 200%;}
+}
+
+/* Typing text */
+#typing {
+    font-size: 1.1rem;
+    margin-top: 20px;
+    min-height: 60px;
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4b6e;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Surprise */
+#surprise {
+    display: none;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Gallery 3 columns */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.popup img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 16px;
+    color: #fff;
+    animation: floatUp 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width:600px) {
+    h1 {font-size: 2rem;}
+    .name {font-size: 1.5rem;}
+    #typing {font-size: 1rem;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Happy Birthday Gorgeous</h1>
+<div class="name">Tasfia Afrin Zinat ✨</div>
+
+<div id="typing"></div>
+
+<button onclick="showSurprise()">Click for Surprise 🎁</button>
+
+<div id="surprise">
+To the girl who makes "stunning" look like a breeze,<br>
+May your day bring you laughter and moments of ease.<br>
+Here’s to another year of you owning the room,<br>
+And staying the brightest flower in full, gorgeous bloom.
+</div>
+
+<h2>Memories 📸</h2>
+
+<div class="gallery">
+<img src="photo1.jpg" onclick="openPopup(this.src)">
+<img src="photo2.jpg" onclick="openPopup(this.src)">
+<img src="photo3.jpg" onclick="openPopup(this.src)">
+<img src="photo4.jpg" onclick="openPopup(this.src)">
+<img src="photo5.jpg" onclick="openPopup(this.src)">
+<img src="photo6.jpg" onclick="openPopup(this.src)">
+<img src="photo7.jpg" onclick="openPopup(this.src)">
+<img src="photo8.jpg" onclick="openPopup(this.src)">
+<img src="photo9.jpg" onclick="openPopup(this.src)">
+<img src="photo10.jpg" onclick="openPopup(this.src)">
+<img src="photo11.jpg" onclick="openPopup(this.src)">
+<img src="photo12.jpg" onclick="openPopup(this.src)">
+</div>
+
+</div>
+
+<div class="popup" id="popup" onclick="closePopup()">
+<img id="popupImg">
+</div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* iOS friendly autoplay */
+window.addEventListener("click", () => {
+    document.getElementById("bgMusic").play();
+}, { once: true });
+
+/* Typing animation */
+const text = "You make the world brighter just by existing. Today is all about celebrating you.";
+let i = 0;
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 40);
+    }
+}
+typing();
+
+/* Surprise */
+function showSurprise() {
+    document.getElementById("surprise").style.display = "block";
+}
+
+/* Popup gallery */
+function openPopup(src) {
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("popupImg").src = src;
+}
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+/* Floating hearts with name */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️ Tasfia";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 10 + 12) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 400);
+
+</script>
+
+</body>
+</html>
